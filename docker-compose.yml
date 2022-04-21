@@ -1,0 +1,19 @@
+version: "3.1"
+services:
+# Aquí ponemos los servicios que vamos a necesitar
+  mongo:
+  #aquí la configuración
+    image: mongo:latest
+    restart: always
+    environment:
+    #acceso
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+    #donde va a responder
+      - 15001:27017
+    volumes:
+      - ./mongo-db:/data/db
+#docker-compose up -d levantar el contenedor
+#docker-compose ps para ver las cosas que están levantadas
+#docker-compose down para echar abajo el contenedor
