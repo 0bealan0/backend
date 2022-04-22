@@ -1,19 +1,22 @@
 version: "3.1"
 services:
-# Aquí ponemos los servicios que vamos a necesitar
+  # Aquí ponemos los servicios que vamos a necesitar
   mongo:
-  #aquí la configuración
+    #aquí la configuración
     image: mongo:latest
     restart: always
     environment:
-    #acceso
+      #acceso(use admin), variables de entorno:
+
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: bancos
     ports:
-    #donde va a responder
+      #donde va a responder
       - 15001:27017
     volumes:
       - ./mongo-db:/data/db
+      - ./init-db:/docker-entrypoint-initdb.d
 #docker-compose up -d levantar el contenedor
 #docker-compose ps para ver las cosas que están levantadas
 #docker-compose down para echar abajo el contenedor
